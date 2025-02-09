@@ -1,0 +1,2 @@
+# Python version: 3.12
+scipy~=1.15.1
