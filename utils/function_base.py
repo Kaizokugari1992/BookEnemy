@@ -57,13 +57,16 @@ class FootballEvent:
         # variable to calculate the booker net profit offered based on his odds.
         knet = self.bet_position_finder(place)
         oddprob = 1 / my_odd
+        game_list = []
         for mockwins in range(mockgames + 1):
             profit = (mockwins) * self.bet * (knet+1) - (mockgames) * self.bet
             pscenario = 1 - binom.cdf(mockwins - 1, mockgames, oddprob)
-            print(
-                f" {mockwins}/{mockgames} with profit {profit:.2f} and chance of that happening or "
+            game_list.append(f"{mockwins}/{mockgames} with profit {profit:.2f} and chance of that happening or "
                 f"better {pscenario:.4f}")
-        return
+            #print(
+            #    f" {mockwins}/{mockgames} with profit {profit:.2f} and chance of that happening or "
+            #    f"better {pscenario:.4f}")
+        return game_list
 
     def estimated_wins_for_set_games(self, my_odd, mockgames, *, confidence = 0.95):
         oddprob = 1 / my_odd
@@ -71,15 +74,22 @@ class FootballEvent:
         # Calculate the confidence interval for the number of wins
         lower_bound = binom.ppf(distance, mockgames, oddprob)
         upper_bound = binom.ppf(1-distance, mockgames, oddprob)
-        print(f"Out of {mockgames} games, you will win between {lower_bound:.2f} and {upper_bound:.2f} "
+        #print(f"Out of {mockgames} games, you will win between {lower_bound:.2f} and {upper_bound:.2f} "
+        #      f"games with {confidence*100:.0f}% confidence.")
+        return str(f"Out of {mockgames} games, you will win between {lower_bound:.2f} and {upper_bound:.2f} "
               f"games with {confidence*100:.0f}% confidence.")
 
     def __str__(self):
         rake = self.calculate_rake(explanation = False)
-        return (f"The booker estimates that the home team has a {self.hprob*100:.2f}% chance of winning, the tie has a "
-                f"{self.tprob*100:.2f}% chance of winning, and the away team has a {self.aprob*100:.2f}% "
-                f"chance of winning. \nThe above probabilities add up to {(rake+1)*100:.2f}%, "
-                f"which means the rake is {rake*100:.2f}%.")
+        return str(f"<div style='text-align: center;'><b style='font-size: 14px;'>1</b>: {self.home}"
+                   f"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
+                   f"<b style='font-size: 14px;'>X</b> : {self.tie}"
+                   f"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
+                   f"<b style='font-size: 14px;'>2</b>: {self.away}</div><br>"
+                f"The booker estimates that the <u>Home Team</u> has a <b>{self.hprob * 100:.2f}%</b> chance of winning, "
+                f"the <u>Tie</u> has a <b>{self.tprob * 100:.2f}%</b> chance of happening, and the <u>Away Team</u> has a "
+                f"<b>{self.aprob * 100:.2f}%</b> chance of winning.<br>The above probabilities add up to "
+                f"<b>{(rake + 1) * 100:.2f}%</b>, which means the rake is <b>{rake * 100:.2f}%</b>.")
 
 
 if __name__ == "__main__":
