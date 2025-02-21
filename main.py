@@ -6,8 +6,8 @@ import sys
 class MyApplication(QWidget):
     def __init__(self):
         super().__init__()
-        self.prompt = (">>>Type the number of games you want to simulate in the 'Simulated Games' field and press enter"
-                       " to access the rest of the options.<<<")
+        self.prompt = ("---Type the number of games you want to simulate in the <b>'Simulated Games'</b> field and press <b>Enter</b>"
+                       " to access the rest of the options.---")
         self.dashspace = "-----------------------------------------------------"
         self.initUI()
 
@@ -77,7 +77,7 @@ class MyApplication(QWidget):
         message_box.setGeometry(10, 80, 390, 120)
         message_box.setReadOnly(True)
         self.message_box = message_box
-        message_box.setText("Press the 'Submit' button to initialize an event and get the rake value.")
+        message_box.setText("Press the <b>'Submit'</b> button to initialize an event and get the rake value.")
         bigmessage_box = QTextEdit(self)
         bigmessage_box.setGeometry(160, second_line + 20, 240, 285)
         bigmessage_box.setReadOnly(True)
@@ -132,7 +132,7 @@ class MyApplication(QWidget):
         self.option1button.setEnabled(False)
         self.option2button.setEnabled(False)
         self.option3button.setEnabled(False)
-        self.bigmessage_box.setText("Insert the estimated true odd for any event of your choice.")
+        self.bigmessage_box.setText("Insert <b>the estimated true odd</b> for any event of your choice.")
         self.unlock2button.setEnabled(False)
         self.mockentry.setEnabled(False)
         return
@@ -153,7 +153,7 @@ class MyApplication(QWidget):
                 self.radio2.setEnabled(True)
                 self.radio3.setEnabled(True)
                 self.myoddbutton.setEnabled(True)
-                self.bigmessage_box.setText("Insert the estimated true odd for any event of your choice.")
+                self.bigmessage_box.setText("Insert the <b>estimated true odd</b> for any event of your choice.")
                 self.unlock1button.setEnabled(True)
                 self.submitbutton.setEnabled(False)
             else:
@@ -188,11 +188,11 @@ class MyApplication(QWidget):
                 self.unlock2button.setEnabled(True)
                 self.myoddbutton.setEnabled(False)
                 self.mockentry.setEnabled(True)
-                current_text = self.bigmessage_box.toPlainText()
-                self.new_text = (f"{current_text}\n{self.dashspace}\nYour estimated true odd for the '{self.fullplace}' option is "
-                                 f"{self.my_odd}, instead of the booker's estimation of "
-                                 f"{comparison_odd}.\n{self.dashspace}\n{self.prompt}")
-                self.bigmessage_box.setText(self.new_text)
+                current_text = self.bigmessage_box.toHtml()
+                self.new_text = (f"{current_text}\n{self.dashspace}\nYour estimated true odd for the <u>'{self.fullplace}'</u> option is "
+                                 f"<b>{self.my_odd}</b>, instead of the booker's estimation of "
+                                 f"<b>{comparison_odd}</b>.\n{self.dashspace}\n{self.prompt}")
+                self.bigmessage_box.setHtml(self.new_text)
 
             elif 1 < self.my_odd <= 1000 and self.my_odd >= comparison_odd:
                 QMessageBox.warning(self, "Error",
@@ -208,21 +208,21 @@ class MyApplication(QWidget):
 
     def option1(self):
         games, wins = self.b.n_of_bets_for_profit(self.my_odd, self.place)
-        self.bigmessage_box.setText(
-            f"{self.new_text}\n{self.dashspace}\nTo not lose your betting money on the long run for a {self.my_odd} odd on the "
-            f"{self.fullplace} option, you need to play at least {games} similar games. "
-            f"In these games, you'll achieve the minimum number of required {wins} wins to get profit (or go equal)"
-            f" with a confidence of at least 95%.")
+        self.bigmessage_box.setHtml(
+            f"{self.new_text}\n{self.dashspace}\nTo not lose your betting money on the long run for a <b>{self.my_odd}</b> odd on the "
+            f"<b>{self.fullplace}</b> option, you need to play at least <b>{games}</b> similar games. "
+            f"In these games, you'll achieve the minimum number of required <b>{wins}</b> wins to get profit (or go equal)"
+            f" with a confidence of at least <b>95%</b>.")
 
     def option2(self):
         result = self.b.set_games_profit_scenarios(self.my_odd, self.place, self.mockgames)
-        new_result = "\n".join(map(str, result))
-        self.bigmessage_box.setText(self.new_text + f"\n{self.dashspace}\n" + new_result)
+        new_result = "<br>".join(map(str, result))
+        self.bigmessage_box.setHtml(self.new_text + f"\n{self.dashspace}\n" + new_result)
 
     def option3(self):
         self.get_mockgames()
         self.b.estimated_wins_for_set_games(self.my_odd, self.mockgames)
-        self.bigmessage_box.setText(
+        self.bigmessage_box.setHtml(
             self.new_text + f"\n{self.dashspace}\n" + self.b.estimated_wins_for_set_games(self.my_odd, self.mockgames))
 
     def get_mockgames(self):
