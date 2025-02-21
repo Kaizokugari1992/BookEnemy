@@ -76,8 +76,8 @@ class FootballEvent:
         upper_bound = binom.ppf(1-distance, mockgames, oddprob)
         #print(f"Out of {mockgames} games, you will win between {lower_bound:.2f} and {upper_bound:.2f} "
         #      f"games with {confidence*100:.0f}% confidence.")
-        return str(f"Out of {mockgames} games, you will win between {lower_bound:.2f} and {upper_bound:.2f} "
-              f"games with {confidence*100:.0f}% confidence.")
+        return str(f"Out of <b>{mockgames}</b> games, you will win between <b>{lower_bound:.2f}</b> and <b>{upper_bound:.2f}</b> "
+              f"games with <b>{confidence*100:.0f}%</b> confidence.")
 
     def __str__(self):
         rake = self.calculate_rake(explanation = False)
