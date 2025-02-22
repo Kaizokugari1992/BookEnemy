@@ -92,6 +92,7 @@ class FootballEvent:
                 f"<b>{(rake + 1) * 100:.2f}%</b>, which means the rake is <b>{rake * 100:.2f}%</b>.")
 
 
+#Below is a local tester for function_base.py.
 if __name__ == "__main__":
     b = FootballEvent(4, 4, 2.5)
     #print(str(b))

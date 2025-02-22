@@ -34,9 +34,19 @@
 ## About The Project
 
 This is a mini project focused on the concept of [value betting](https://en.everybodywiki.com/Value_betting). 
-The pinnacle of value betting lies on examining offered bets and trying to assess the underlying relative frequency of the implied outcomes. Every time the bettor finds a discrepancy between the offered odd and his estimated relative frequency of the offered outcome, it is self-evident that this is a favorable bet and he should bet on it.
-Most of the bettors, though, are not interested on winning a single event. It would be more preferable to be confident that one can mantain profit in the long-run, while following a value betting strategy. The solution to this problem is not trivial. One cannot just hope to find marginally better odds than what the booker estimates nor should hope that any arbitrary number of similar games is enough to net him a profit in a respectable confidence interval, just on intuition.
-**Book Enemy** is a simple calculator that can quantify the odds of different offered odd/"true" (sic) odd scenarios and help bettors make informed decisions.
+The pinnacle of value betting lies on examining offered bets and trying to assess the underlying relative 
+frequency of the implied outcomes. Every time the bettor finds a discrepancy between the offered odd and 
+his estimated relative frequency of the offered outcome, it is self-evident that this is a favorable bet 
+and he should bet on it.
+
+Most of the bettors, though, are not interested on winning a single event. It would be more preferable to be
+confident that one can mantain profit in the long-run, while following a value betting strategy. 
+
+The solution to this problem is not trivial. Estimating marginally better odds than what the booker offers 
+or picking any number of games and intuitively think that they are a big enough of a sample space to guarantee profit 
+in the long run is not, is simply not the best one can do to enjoy betting in a smart way.
+**Book Enemy** is a simple calculator that can quantify the odds of different offered odd/"true" (sic) odd scenarios 
+and help bettors make informed decisions.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -61,7 +71,7 @@ Refer to *requirements.txt*.
    git remote set-url origin Kaizokugari1992/BookEnemy
    git remote -v # confirm the changes
    ```
- 3. Make sure all the requirements are properly installed on your venv.
+ 3. Install all the requirements listed in *requirements.txt*. 
  
  4. Run <span>main.py</span>.
 
@@ -85,9 +95,9 @@ Inputs are pretty much self-explanatory.
 3. There are three possible choices.
    - Calculate the minimum similar bets you need to make, so that you, at least, get your money back with a confidence of at least 95%. I made the confidence interval a function argument, so you can easily change it if you wish so. In future versions of <b>"Book Enemy"</b>, it is trivial to make a slider of the desired confidence interval.
    - Return all the possible win scenarios for a certain number of similar games. The scenarios will return the win/game ratio, the total profit/loss and the cumulative probability of the scenario, meaning this or something better (more profitable) happening. This, at the moment, assumes an equal bet of 100AU on every single bet.
-   - Estimate how many wins you are projected to make in a certain number of similar games, for the designated confidence interval of 95%. Both this and the previous scenario, require from you to specify how many many games you want to simulate in the left lowermost entry field titled "Simulated Games". 
+   - Estimate how many wins you are projected to make in a certain number of similar games, for the designated confidence interval. Both this and the previous scenario, require specifying the number of games you want to simulate in the left lowermost entry field titled "Simulated Games". 
 
-If the project gets significant traction, I might include a short introduction to the actual mathematics used to support our calculations. If you have some elementary knowledge of [Combinatronics](https://en.wikipedia.org/wiki/Combinatorics) and by extension the [Binomial Distribution](https://en.wikipedia.org/wiki/Binomial_distribution), you can pick apart the functions provided in <i>utils/function_base.py</i>. I can recommend "Hogg-McKean-Craig (2019). <i>Introduction to Mathematical Statistics</i>, (8th ed.). Pearson." for aspirants with a math/physics/engineering background.
+If the project gets significant traction, I might include a short introduction to the actual mathematics used to support our calculations. If you have some elementary knowledge of [Combinatronics](https://en.wikipedia.org/wiki/Combinatorics) and by extension the [Binomial Distribution](https://en.wikipedia.org/wiki/Binomial_distribution), you can pick apart the functions provided in <i>utils/function_base.py</i>. I can recommend "Hogg-McKean-Craig (2019). <i>Introduction to Mathematical Statistics</i>, (8th ed.). Pearson.", but the aspirants should have a good grasp of Calculus and Analysis.
 
 If you have any suggestions or corrections to provide on the actual mathematics used, I would be more than happy to be corrected (this is an educational project after all). 
 
