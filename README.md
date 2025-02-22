@@ -1,8 +1,11 @@
 <a id="readme-top"></a>
+<p align="center">
+  <img src="auxiliary/football-ball.ico" width="70" height="70">
+</p>
 <h3 align="center">Book Enemy</h3>
 
   <p align="center">
-    Gain one against the booker.
+    <i>Gain one against the booker.</i>
     <br />
 
 
