@@ -108,6 +108,8 @@ If you have any suggestions or corrections to provide on the actual mathematics 
 
 Distributed under the **GNU General Public License v3.0**. See `LICENSE.txt` for more information.
 
+<a href="https://www.flaticon.com/free-icons/betting" title="betting icons">Logo created by Vlad Szirka - Flaticon</a>
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- CONTACT -->
